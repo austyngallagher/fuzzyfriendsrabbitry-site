@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fuzzy Friends Rabbitry</title>
+  <style>
+    :root {
+      --bg: #f8f6f1;
+      --surface: #ffffff;
+      --text: #2f2f2f;
+      --muted: #6b6b6b;
+      --accent: #7a9e7e;
+      --accent-dark: #5f8263;
+      --border: #e7e2d8;
+      --max: 1080px;
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+      border-radius: 14px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(248, 246, 241, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      gap: 16px;
+    }
+
+    .brand {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 18px;
+      padding: 0;
+      margin: 0;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 64px 0 44px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--accent-dark);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.15;
+      margin: 0 0 16px;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+    }
+
+    .lead {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin-bottom: 24px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      font-weight: 700;
+    }
+
+    .button.primary {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .button.primary:hover {
+      background: var(--accent-dark);
+      border-color: var(--accent-dark);
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .hero-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    }
+
+    section {
+      padding: 44px 0;
+    }
+
+    .section-intro {
+      max-width: 700px;
+      margin-bottom: 24px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+    }
+
+    .card h3 {
+      margin-top: 14px;
+      font-size: 1.15rem;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .available-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .bunny-meta {
+      margin-top: 12px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .status {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #edf5ee;
+      color: var(--accent-dark);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .about-box,
+    .contact-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    footer {
+      padding: 28px 0 44px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .cards,
+      .available-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="#home" class="brand">Fuzzy Friends Rabbitry</a>
+      <nav>
+        <ul>
+          <li><a href="#available">Available Bunnies</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Holland Lop Bunnies</div>
+          <h1>Clean, simple, and full of fuzzy little personalities.</h1>
+          <p class="lead">
+            Welcome to Fuzzy Friends Rabbitry. We raise Holland Lop bunnies with a focus on gentle temperaments, daily handling, and happy, healthy babies ready for loving homes.
+          </p>
+          <div class="buttons">
+            <a class="button primary" href="#available">View Available Bunnies</a>
+            <a class="button" href="#contact">Contact Us</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <img src="https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?auto=format&fit=crop&w=1200&q=80" alt="Holland Lop rabbit" />
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-intro">
+          <h2>Why families love Holland Lops</h2>
+          <p class="muted">
+            Holland Lops are known for their sweet faces, compact size, and gentle personalities. We keep things simple here: healthy bunnies, honest communication, and a caring start before they go home.
+          </p>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <h3>Handled with care</h3>
+            <p class="muted">Our bunnies are handled regularly so they are comfortable with people from the start.</p>
+          </div>
+          <div class="card">
+            <h3>Raised in a clean environment</h3>
+            <p class="muted">We focus on cleanliness, comfort, and healthy routines for every bunny we raise.</p>
+          </div>
+          <div class="card">
+            <h3>Friendly process</h3>
+            <p class="muted">No complicated fluff. Just a simple, personal adoption experience and clear updates.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="available">
+      <div class="container">
+        <div class="section-intro">
+          <h2>Available Bunnies</h2>
+          <p class="muted">
+            Update this section whenever you have new litters or available babies. You can swap names, dates, photos, and statuses anytime.
+          </p>
+        </div>
+
+        <div class="available-grid">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=1200&q=80" alt="Available bunny 1" />
+            <h3>Hazel</h3>
+            <div class="bunny-meta">
+              Doe<br />
+              DOB: January 12, 2026<br />
+              Color: Broken Tort
+            </div>
+            <div class="status">Available</div>
+          </div>
+
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1425082661705-1834bfd09dca?auto=format&fit=crop&w=1200&q=80" alt="Available bunny 2" />
+            <h3>Oliver</h3>
+            <div class="bunny-meta">
+              Buck<br />
+              DOB: January 12, 2026<br />
+              Color: Blue Tort
+            </div>
+            <div class="status">Reserved</div>
+          </div>
+
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1452857297128-d9c29adba80b?auto=format&fit=crop&w=1200&q=80" alt="Available bunny 3" />
+            <h3>Willow</h3>
+            <div class="bunny-meta">
+              Doe<br />
+              DOB: February 4, 2026<br />
+              Color: Chestnut
+            </div>
+            <div class="status">Available</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="about-box">
+          <h2>About Fuzzy Friends Rabbitry</h2>
+          <p class="muted">
+            Fuzzy Friends Rabbitry is a small rabbitry focused on raising Holland Lops with excellent temperament and lots of early handling. Our goal is simple: raise beautiful, healthy bunnies and help match them with loving homes.
+          </p>
+          <p class="muted">
+            We believe the way a bunny is raised matters. That is why we focus on calm care, consistency, and creating a positive start for every baby before they head home.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <h2>Contact</h2>
+          <p class="muted">
+            Interested in a bunny or have questions? Reach out and let us know which bunny you are interested in, where you are located, and anything else you would like to ask.
+          </p>
+
+          <div class="contact-list">
+            <div><strong>Email:</strong> your@email.com</div>
+            <div><strong>Facebook:</strong> Your Facebook Page</div>
+            <div><strong>Location:</strong> Virginia</div>
+          </div>
+
+          <div class="buttons">
+            <a class="button primary" href="mailto:your@email.com">Email Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Fuzzy Friends Rabbitry. Holland Lop bunnies raised with care.
+    </div>
+  </footer>
+</body>
+</html>
